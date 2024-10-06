@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore the Maldives</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General Styles */
+        body {
+            background: linear-gradient(to right, #c9e452, #6cbee4);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #006d77;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        .header {
+            background: url('maldives_header.jpg') no-repeat center center;
+            background-size: cover;
+            height: 350px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 3.5rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gallery Styling */
+        .gallery img {
+            width: 100%;
+            height: 250px; /* Fixed height */
+            object-fit: cover; /* Maintain aspect ratio while filling the box */
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #006d77;
+            padding: 30px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap');
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Welcome to the Maldives</h1>
+    </header>
+
+    <!-- Information Section -->
+    <div class="container my-5">
+        <h2 class="text-center">About the Maldives</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <p>The Maldives is a tropical paradise known for its stunning white-sand beaches, crystal-clear waters, and vibrant marine life. Located in the Indian Ocean, this island nation comprises 26 atolls, offering visitors a perfect getaway for relaxation and adventure.</p>
+                <p>With luxurious resorts, rich cultural heritage, and excellent diving opportunities, the Maldives is ideal for honeymooners, families, and solo travelers alike.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="container">
+        <h2 class="text-center mb-4">Gallery</h2>
+        <div class="row gallery">
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives beach.jpg" alt="Maldives Beach" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives resort.jpg" alt="Maldives Resort" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives sunset.jpg" alt="Maldives Sunset" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives ocean.jpg" alt="Maldives Ocean" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives snorkeling.jpg" alt="Maldives Snorkeling" class="img-fluid">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="images_maldives/maldives dive.jpg" alt="Maldives Dive" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>Enjoy the Maldives Experience.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
