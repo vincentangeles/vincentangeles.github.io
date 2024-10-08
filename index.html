@@ -9,14 +9,14 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #000000, #ffffff); /* Black to white gradient */
+            background: gray;
             font-family: 'Poppins', sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 100vh;
+            height: auto; /* Allow for scrolling */
             padding: 50px;
             position: relative;
         }
@@ -75,7 +75,7 @@
         }
 
         .buttons button {
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 0.5rem; /* Smaller button size */
             background-color: #ffffff;
             color: #1c1c1c;
             border: none;
@@ -89,15 +89,6 @@
         .buttons button:hover {
             background-color: #e0e0e0;
             transform: scale(1.05);
-        }
-
-        footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: #cccccc;
-            text-align: center;
-            width: 100%; /* Center footer */
         }
     </style>
 </head>
@@ -122,12 +113,10 @@
         <div class="right-side">
             <h2>Web Development</h2>
             <div class="buttons">
-                <button onclick="window.location.href='activity4.html';">Iphone 12</button>
-                <button onclick="window.location.href='maldives.html';">Maldives</button>
+                <button onclick="window.location.href='activity4.html';">Activity 4</button>
+                <button onclick="window.location.href='maldives.html';">Activity 5</button>
             </div>
         </div>
     </div>
-
-    <footer>Designed by Emanuel Vincent M. Angeles</footer>
 </body>
 </html>
