@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Porsche GT3 RS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Responsive Text for Overlay */
+        .overlay-text {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 22px;
+            text-align: center;
+        }
+
+        /* Make text smaller on smaller screens */
+        @media (max-width: 768px) {
+            .overlay-text {
+                font-size: 16px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .overlay-text {
+                font-size: 14px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="height: 100px;">
+                <h1 class="display-6 text-center m-4" style="font-family: 'Orbitron', sans-serif;">
+                    PORSCHE
+                </h1>
+            </div>
+        </div>
+        <button class="btn btn-primary position-absolute top-0 end-0 m-3" onclick="window.location.href='../index.html'">Home</button>
+    </div>
+
+    <div class="container-fluid p-0" style="position: relative; width: 100%; overflow: hidden;">
+        <div class="row">
+            <div class="col" style="height: 100vh;">
+                <iframe style="pointer-events: none; margin-left: 50%; transform: translateX(-50%);" width="4000px"
+                    height="100%"
+                    src="https://www.youtube.com/embed/6WUHygknLic?si=lAdi7af8GYQdeiu9&autoplay=1&mute=1&controls=0&rel=0&disablekb=1&loop=1"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div style="position: absolute; bottom: 10px; left: 0; right: 0; width: 100%; background-color: rgba(0, 0, 0, 0.5);">
+                <div class="overlay-text">
+                    The Porsche 911 GT3 RS is a track-focused, high-performance sports car that showcases Porsche's
+                    engineering excellence. Powered by a 4.0-liter flat-six engine, it delivers incredible horsepower
+                    and an unmistakable exhaust note. With lightweight construction, advanced aerodynamics, and precise
+                    suspension, the GT3 RS offers exceptional handling and agility. Its aggressive design, including a
+                    prominent rear wing, highlights its performance-oriented nature. Inside, the focus is on minimalism
+                    and racing-inspired features. The GT3 RS is a symbol of Porsche’s motorsport legacy, delivering an
+                    unparalleled driving experience for enthusiasts and collectors alike.
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
