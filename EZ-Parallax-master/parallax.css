@@ -1,0 +1,125 @@
+/* PARALLAX.CSS */
+/*CSS created by Christopher Jay De Claro*/
+/*github.com/cjdeclaro*/
+
+/*Key Art default settings*/
+
+.keyart,
+.keyart_layer {
+	height: 1000px;
+}
+
+.keyart {
+	position: relative;
+	z-index: 10;
+}
+
+.keyart_layer {
+	background-position: bottom center;
+	background-size: auto 1038px;
+	background-repeat: repeat-x;
+	width: 100%;
+	position: absolute;
+}
+
+.keyart_layer.parallax {
+	position: fixed;
+}
+
+.main-content {
+	width: 100%;
+	position: absolute;
+	z-index: 200;
+}
+
+/* Import Angry Birds font */
+@font-face {
+    font-family: 'AngryBirds';
+    src: url('fonts/angrybirds/angrybirds-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General body font */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Heading font style */
+h1 {
+    font-family: 'AngryBirds', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+/* Card styles */
+.card {
+    text-align: center;
+    width: 250px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+}
+
+.card p {
+    font-family: 'AngryBirds', Arial, sans-serif;
+    font-size: 20px;
+    margin: 15px 0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+
+/*ADD OR REMOVE LAYERS AS NEEDED*/
+
+#keyart-0 {
+	background-image: url(img/parallax0.png);
+}
+
+#keyart-1 {
+	background-image: url(img/parallax1.png);
+}
+
+#keyart-2 {
+	background-image: url(img/parallax2.png);
+}
+
+#keyart-3 {
+	background-image: url(img/parallax3.png);
+}
+
+#keyart-4 {
+	background-image: url(img/parallax4.png);
+}
+
+#keyart-5 {
+	background-image: url(img/parallax5.png);
+}
+
+#keyart-6 {
+	background-image: url(img/parallax6.png);
+}
+
+#keyart-7 {
+	background-image: url(img/parallax7.png);
+}
+
+#keyart-8 {
+	background-image: url(img/parallax8.png);
+}
+
+#keyart-scrim {
+	opacity: 0;
+}
