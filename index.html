@@ -7,43 +7,51 @@
     <title>Emanuel Vincent M. Angeles</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="icon" type="image/x-icon" href="Va.png">
     <style>
+        @font-face {
+            font-family: 'GraphikCompact';
+            src: url('GraphikFont/GraphikCompact-Black-Trial.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
-            margin: 0;
-            padding: 50px;
-            background: gray;
+            background: #0f0f0f;
             font-family: 'Poppins', sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
+        }
+
+        .navbar,
+        .navbar-nav,
+        .nav-link,
+        .navbar-brand {
+            color: white !important;
+            /* Force white color */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ddd !important;
+            /* Optional: Change color when hovered */
         }
 
         h1 {
-            font-size: 3rem;
+            font-family: 'GraphikCompact', sans-serif;
+            font-size: 5rem !important;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 20px;
         }
 
-        .line-divider {
-            width: 80%;
-            border-bottom: 2px solid #ffffff;
-            margin: 20px 0;
-        }
-
-        .container {
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-        }
-
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-family: 'GraphikCompact', sans-serif;
+            font-size: 3.5rem;
+        }
+
+        p {
+            font-family: 'GraphikCompact', sans-serif;
+            font-size: 1rem;
         }
 
         .buttons {
@@ -61,45 +69,167 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
             border-radius: 5px;
-            width: 100%;
+            width: 50%;
         }
 
         .buttons button:hover {
             background-color: #e0e0e0;
             transform: scale(1.05);
         }
+
+        .short-divider {
+            width: 90%;
+            height: 2px;
+            background-color: #ffffff;
+            margin: 20px auto;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid text-center">
-        <h1 class="display-5 mt-4">Emanuel Vincent M. Angeles</h1>
-    </div>
+    <!-- <nav class="navbar navbar-expand-lg" style="background-color: #0f0f0f; color: white;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand m-2" href="#">
+                <img src="images/logo.png" width="30" height="24">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end m-2" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item me-3">
+                        <a class="nav-link active" aria-current="page" href="#">Work</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
 
-    <div class="line-divider"></div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <h2>About Me</h2>
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 mb-4 text-center">
+                <h1 class="display-5 mt-4 pb-4">Vincent Angeles</h1>
                 <p>I'm a 3rd year college student taking up a program in Bachelor of Science in Information Technology.
                     Currently studying at the Polytechnic University of the Philippines – Santo Tomas Campus.</p>
-
+                <!-- 
                 <h2>Contact</h2>
                 <p>Email: emanuelvincentangeles@gmail.com</p>
                 <p>Phone: 09108449289</p>
-                <p>Github: vincentangeles</p>
+                <p>Github: vincentangeles</p> -->
             </div>
+        </div>
+    </div>
 
-            <div class="col-md-6 text-center">
-                <h2>Web Development Projects</h2>
-                <div class="buttons">
-                    <button onclick="window.location.href='Iphone 12/activity4.html';">Iphone 12</button>
-                    <button onclick="window.location.href='maldives/maldives.html';">Maldives</button>
-                    <button onclick="window.location.href='cars/cars.html';">Cars</button>
-                    <button onclick="window.location.href='valorant/valorant.html';">Valorant</button>
-                    <button onclick="window.location.href='video/index.html';">Video || Porsche</button>
-                    <button onclick="window.location.href='EZ-Parallax-master/index.html';">Parallax</button>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="carouselWebDev" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="Iphone 12/activity4.html">
+                                <img src="Iphone 12/images/IphoneBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="maldives/maldives.html">
+                                <img src="maldives/images_maldives/maldivesBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="cars/cars.html">
+                                <img src="cars/images_porsche/carsBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item active">
+                            <a href="valorant/valorant.html">
+                                <img src="valorant/valorantBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="video/index.html">
+                                <img src="video/videoBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="EZ-Parallax-master/index.html">
+                                <img src="EZ-Parallax-master/img/parallaxBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselWebDev"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselWebDev"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <h2>Web Development</h2>
+            </div>
+        </div>
+    </div>
+
+    <hr class="short-divider m-2 m-sm-3 m-md-4 m-lg-5 m-xl-6">
+
+    <div class="container ">
+        <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+                <h2>App Development </h2>
+            </div>
+            <div class="col-md-6 ms-auto">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="Iphone 12/activity4.html">
+                                <img src="Iphone 12/images/IphoneBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="maldives/maldives.html">
+                                <img src="maldives/images_maldives/maldivesBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="cars/cars.html">
+                                <img src="cars/images_porsche/carsBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item active">
+                            <a href="valorant/valorant.html">
+                                <img src="valorant/valorantBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="video/index.html">
+                                <img src="video/videoBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="EZ-Parallax-master/index.html">
+                                <img src="EZ-Parallax-master/img/parallaxBG.png" class="d-block w-100">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -107,7 +237,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>
