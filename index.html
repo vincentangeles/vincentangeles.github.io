@@ -77,38 +77,28 @@
             transform: scale(1.05);
         }
 
-        .short-divider {
-            width: 90%;
-            height: 2px;
-            background-color: #ffffff;
-            margin: 20px auto;
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #000;
+            /* Dark color to make the icons visible */
+            border-radius: 50%;
+            /* Optional: gives the buttons a circular shape */
+        }
+
+        .carousel-inner {
+            height: 320px;
+            /* Adjust this value to your preferred height */
+        }
+
+        .carousel-inner img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-expand-lg" style="background-color: #0f0f0f; color: white;">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand m-2" href="#">
-                <img src="images/logo.png" width="30" height="24">
-            </a>
-            <div class="collapse navbar-collapse justify-content-end m-2" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item me-3">
-                        <a class="nav-link active" aria-current="page" href="#">Work</a>
-                    </li>
-                    <li class="nav-item me-2">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
 
     <div class="container mb-5">
         <div class="row justify-content-center">
@@ -125,7 +115,7 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 pb-5">
         <div class="row">
             <div class="col-md-6">
                 <div id="carouselWebDev" class="carousel slide">
@@ -179,28 +169,29 @@
         </div>
     </div>
 
-    <hr class="short-divider m-2 m-sm-3 m-md-4 m-lg-5 m-xl-6">
+    <ul class="short-divider justify-content-center border-bottom pb-3 mb-3"></ul>
 
-    <div class="container ">
+
+    <div class="container pb-5 pt-5 ">
         <div class="row">
-            <div class="col d-flex justify-content-center align-items-center">
-                <h2>App Development </h2>
+            <div class="col d-flex justify-content-center align-items-center pb-5">
+                <h2>App Development</h2>
             </div>
             <div class="col-md-6 ms-auto">
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="ADET/A02/index.php">
-                                <img src="ADET/A02/images/image.png" class="d-block w-100">
+                                <img src="ADET/A02/images/image.png" class="d-block w-100 img-fluid">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="ADET/A03/index.html">
-                                <img src="ADET/A03/images/image.png" class="d-block w-100">
+                                <img src="ADET/A03/images/image.png" class="d-block w-100 img-fluid">
                             </a>
                         </div>
-                        
                     </div>
+
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
