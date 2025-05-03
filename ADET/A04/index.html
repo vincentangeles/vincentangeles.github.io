@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>R2G</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        .custom-button {
+            width: 100px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .custom-button.content {
+            width: 200px;
+        }
+
+        .custom-button:hover {
+            background-color: rgb(240, 240, 240);
+            cursor: pointer;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .topcontainer {
+            height: 20dvh;
+        }
+
+        .categories {
+            width: fit-content;
+        }
+
+        .maincontainer {
+            height: 68dvh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-banner" style="background-color: #a8d5a2; padding: 20px; text-align: center;">
+        <h1 style="margin: 0; color: #2e4f2e; font-family: Arial, sans-serif; font-weight: bold;">Rice to Go+</h1>
+    </div>
+
+    <div class="container-fluid" style="background-color: #ffefd5;">
+        <div class="row pt-3">
+            <div class="col-12 col-md-9">
+                <div class="row">
+                    <div class="col pb-3">
+                        <div class="card overflow-scroll p-3 topcontainer" style="background-color: #ffe0b2;">
+                            <div class="d-flex flex-start flex-row categories" id="categories">
+                            </div>
+                            <div class="mt-3 d-flex flex-wrap gap-2">
+                                <button class="btn btn-danger p-2" onclick="resetOrder()">Reset Order</button>
+                                <button class="btn btn-success p-2" onclick="setDiningOption('Dine In')">Dine
+                                    In</button>
+                                <button class="btn btn-warning p-2" onclick="setDiningOption('Take Out')">Take
+                                    Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card overflow-scroll p-3 maincontainer" style="background-color: #ffe0b2;">
+                            <div class="d-flex flex-start flex-row flex-wrap" id="maincontainer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="card d-flex flex-column p-3"
+                    style="min-height: 89vh; max-height: 89vh; background-color: #ffe0b2;">
+                    <div class="receiptTitle text-center fw-bold fs-2 mb-2">
+                        Rice To Go+
+                    </div>
+                    <div class="diningOption text-center fw-bold fs-6 mb-2">
+                    </div>
+
+                    <div id="receipt" class="flex-grow-1 overflow-auto">
+                    </div>
+                    <div class="mt-3 pt-2 d-flex flex-row justify-content-between border-top">
+                        <div><b>TOTAL</b></div>
+                        <div><b id="totalValue">0</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var products = [
+            {
+                "category": "Rice",
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Fried Rice",
+                        "code": "FR",
+                        "price": 40
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Half Rice",
+                        "code": "HR",
+                        "price": 20
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Egg Rice",
+                        "code": "ER",
+                        "price": 45
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Tinapa Rice",
+                        "code": "TR",
+                        "price": 50
+                    }
+                ]
+            },
+            {
+                "category": "Dish (15.00)",
+                "price": 15,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Egg",
+                        "code": "EGG",
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Hamonado",
+                        "code": "HMND"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Longganisa",
+                        "code": "LNGS"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Okoy",
+                        "code": "OKOY"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (20.00)",
+                "price": 20,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Gyoza",
+                        "code": "GYZ"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Siomai",
+                        "code": "SM"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Shanghai",
+                        "code": "SHNG"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Ham",
+                        "code": "HAM"
+                    },
+                    {
+                        "isAvailable": false,
+                        "name": "Tuyo",
+                        "code": "TY"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (25.00)",
+                "price": 25,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Hotdog",
+                        "code": "HTDG"
+                    }
+
+                ]
+            },
+            {
+                "category": "Dish (30.00)",
+                "price": 30,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Tofu Togue",
+                        "code": "TFT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Embutido",
+                        "code": "EBTD"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (35.00)",
+                "price": 35,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Talong with Alamang",
+                        "code": "TAW"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Omelette",
+                        "code": "OMLT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Mix Veggies",
+                        "code": "MXV"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Tokwa at baboy",
+                        "code": "TAB"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (40.00)",
+                "price": 40,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Sisig",
+                        "code": "SSG"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Grilled Atay",
+                        "code": "GRLDAT"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (45.00)",
+                "price": 45,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Bangus",
+                        "code": "BNGS"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Calamares",
+                        "code": "CLMR"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Chicken Tapa",
+                        "code": "CT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Tortang Talong",
+                        "code": "TT"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (50.00)",
+                "price": 50,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Pork Tapa",
+                        "code": "PT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Savory Squid with Tofu",
+                        "code": "SST"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Teriyaki",
+                        "code": "TRYK"
+                    }
+                ]
+            },
+            {
+                "category": "Dish (55.00)",
+                "price": 55,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Fish Fillet",
+                        "code": "FF"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Beef Tapa",
+                        "code": "BT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Lechon Kawali",
+                        "code": "LCHKWL"
+                    }
+                ]
+            },
+            {
+                "category": "Drinks",
+                "price": 60,
+                "contents": [
+                    {
+                        "isAvailable": false,
+                        "name": "Gulaman",
+                        "code": "GLMN"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Iced Tea",
+                        "code": "ICDT"
+                    },
+                    {
+                        "isAvailable": true,
+                        "name": "Lemonade",
+                        "code": "LMND"
+                    }
+                ]
+            },
+            {
+                "category": "Today's Special",
+                "price": 65,
+                "contents": [
+                    {
+                        "isAvailable": true,
+                        "name": "Chicharon Bulaklak",
+                        "code": "CCH BLK"
+                    },
+                    {
+                        "isAvailable": false,
+                        "name": "Grilled Liempo",
+                        "code": "GRL LMP"
+                    }
+                ]
+            }
+        ]
+
+        var total = 0;
+
+        function loadCategories() {
+            var categoriesContainer = document.getElementById("categories");
+
+            products.forEach((product, index) => {
+                categoriesContainer.innerHTML += `
+          <div onclick="loadProducts('`+ index + `')" class="card mx-1 custom-button p-3 text-center">
+            <small>`+ product.category + `</small>
+          </div>
+        `;
+            });
+        }
+
+        function loadProducts(categoryIndex) {
+            var maincontainer = document.getElementById("maincontainer");
+            maincontainer.innerHTML = "";
+
+            var category = products[categoryIndex];
+            var useCategoryPrice = category.price !== undefined;
+
+            category.contents.forEach(content => {
+                var priceToUse = useCategoryPrice ? category.price : content.price;
+
+                // Check if the item is available
+                var isAvailable = content.isAvailable;
+                var itemClass = isAvailable ? 'custom-button' : 'custom-button disabled'; // Add 'disabled' class if not available
+                var itemStyle = isAvailable ? '' : 'style="background-color: gray; cursor: not-allowed;"'; // Apply gray background and disable pointer events
+
+                maincontainer.innerHTML += `
+            <div onclick="` + (isAvailable ? `addToReceipt('` + priceToUse + `','` + content.name + `')` : '') + `"
+                 class="card mx-1 my-2 ` + itemClass + ` content p-3 text-center" ` + itemStyle + `>
+              <small>` + content.name + `</small>
+            </div>
+        `;
+            });
+        }
+
+        function addToReceipt(price, name) {
+            var receiptContainer = document.getElementById("receipt");
+            total = parseFloat(total) + parseFloat(price);
+
+            totalValueElement = document.getElementById("totalValue");
+            totalValueElement.innerHTML = total;
+
+            receiptContainer.innerHTML += `
+        <div class="d-flex flex-row justify-content-between">
+          <div><small>`+ name + `</small></div>
+          <div><small>`+ price + `</small></div>
+        </div>
+      `;
+        }
+
+        function resetOrder() {
+            var receiptContainer = document.getElementById("receipt");
+            var totalValueElement = document.getElementById("totalValue");
+            var diningOptionElement = document.querySelector('.diningOption'); // Assuming you have a class or id for the dining option display
+
+            // Clear the receipt and reset the total
+            receiptContainer.innerHTML = "";
+            total = 0;
+            totalValueElement.innerHTML = "0";
+
+            // Reset the dining option text
+            if (diningOptionElement) {
+                diningOptionElement.textContent = "---------- Dining Option ----------"; // Reset to default text
+            }
+        }
+
+
+        function setDiningOption(option) {
+            document.querySelector('.diningOption').textContent = `---------- ${option} ----------`;
+        }
+
+
+        loadCategories();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
