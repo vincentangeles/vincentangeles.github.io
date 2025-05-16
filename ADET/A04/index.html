@@ -9,7 +9,7 @@
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         .custom-button {
-            width: 200px;
+            width: 100px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -144,22 +144,30 @@
             });
         }
 
-
-        function loadProducts(categoryID) {
+        function loadProducts(productID) {
             var maincontainer = document.getElementById("maincontainer");
             maincontainer.innerHTML = "";
 
+            var useCategoryPrice = false;
+
             products.forEach(product => {
-                maincontainer.innerHTML += `
-              <div onclick="addToReceipt('` + product.price + `','` + product.code + `')" class="card mx-1 my-2 custom-button content p-3 text-center">
-                <small>` + product.name + `</small>
-                 <small>` + product.price + `</small>
-              </div>
+                if (product.product == productID) {
+                    var priceToUse = product.price;
+                    var itemClass = product.isAvailable ? 'custom-button' : 'custom-button disabled';
+                    var itemStyle = product.isAvailable ? '' : 'style="background-color: gray; cursor: not-allowed;"';
+
+                    maincontainer.innerHTML += `
+            <div onclick="` + (product.isAvailable ? `addToReceipt('` + priceToUse + `','` + product.name + `')` : '') + `"
+                 class="card mx-1 my-2 ` + itemClass + ` content p-3 text-center" ` + itemStyle + `>
+              <small>` + product.name + `</small>
+            </div>
             `;
+                }
             });
         }
 
-        function addToReceipt(price, code) {
+
+        function addToReceipt(price, name) {
             var receiptContainer = document.getElementById("receipt");
             total = parseFloat(total) + parseFloat(price);
 
@@ -168,7 +176,7 @@
 
             receiptContainer.innerHTML += `
         <div class="d-flex flex-row justify-content-between">
-          <div><small>`+ code + `</small></div>
+          <div><small>`+ name + `</small></div>
           <div><small>`+ price + `</small></div>
         </div>
 `;
