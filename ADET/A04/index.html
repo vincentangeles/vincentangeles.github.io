@@ -9,7 +9,7 @@
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         .custom-button {
-            width: 100px;
+            width: 200px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -93,309 +93,73 @@
 
 
     <script>
-        var products = [
-            {
-                "category": "Rice",
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Fried Rice",
-                        "code": "FR",
-                        "price": 40
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Half Rice",
-                        "code": "HR",
-                        "price": 20
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Egg Rice",
-                        "code": "ER",
-                        "price": 45
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Tinapa Rice",
-                        "code": "TR",
-                        "price": 50
-                    }
-                ]
-            },
-            {
-                "category": "Dish (15.00)",
-                "price": 15,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Egg",
-                        "code": "EGG",
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Hamonado",
-                        "code": "HMND"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Longganisa",
-                        "code": "LNGS"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Okoy",
-                        "code": "OKOY"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (20.00)",
-                "price": 20,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Gyoza",
-                        "code": "GYZ"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Siomai",
-                        "code": "SM"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Shanghai",
-                        "code": "SHNG"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Ham",
-                        "code": "HAM"
-                    },
-                    {
-                        "isAvailable": false,
-                        "name": "Tuyo",
-                        "code": "TY"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (25.00)",
-                "price": 25,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Hotdog",
-                        "code": "HTDG"
-                    }
+        var categories = [];
+        var products = [];
 
-                ]
-            },
-            {
-                "category": "Dish (30.00)",
-                "price": 30,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Tofu Togue",
-                        "code": "TFT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Embutido",
-                        "code": "EBTD"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (35.00)",
-                "price": 35,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Talong with Alamang",
-                        "code": "TAW"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Omelette",
-                        "code": "OMLT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Mix Veggies",
-                        "code": "MXV"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Tokwa at baboy",
-                        "code": "TAB"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (40.00)",
-                "price": 40,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Sisig",
-                        "code": "SSG"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Grilled Atay",
-                        "code": "GRLDAT"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (45.00)",
-                "price": 45,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Bangus",
-                        "code": "BNGS"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Calamares",
-                        "code": "CLMR"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Chicken Tapa",
-                        "code": "CT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Tortang Talong",
-                        "code": "TT"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (50.00)",
-                "price": 50,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Pork Tapa",
-                        "code": "PT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Savory Squid with Tofu",
-                        "code": "SST"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Teriyaki",
-                        "code": "TRYK"
-                    }
-                ]
-            },
-            {
-                "category": "Dish (55.00)",
-                "price": 55,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Fish Fillet",
-                        "code": "FF"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Beef Tapa",
-                        "code": "BT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Lechon Kawali",
-                        "code": "LCHKWL"
-                    }
-                ]
-            },
-            {
-                "category": "Drinks",
-                "price": 60,
-                "contents": [
-                    {
-                        "isAvailable": false,
-                        "name": "Gulaman",
-                        "code": "GLMN"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Iced Tea",
-                        "code": "ICDT"
-                    },
-                    {
-                        "isAvailable": true,
-                        "name": "Lemonade",
-                        "code": "LMND"
-                    }
-                ]
-            },
-            {
-                "category": "Today's Special",
-                "price": 65,
-                "contents": [
-                    {
-                        "isAvailable": true,
-                        "name": "Chicharon Bulaklak",
-                        "code": "CCH BLK"
-                    },
-                    {
-                        "isAvailable": false,
-                        "name": "Grilled Liempo",
-                        "code": "GRL LMP"
-                    }
-                ]
-            }
-        ]
+        const getAllCategories = async () => {
+            fetch(
+                'http://localhost/vincentangeles.github.io/ADET/A06_BE/categories.php'
+            )
+                .then(response => response.json())
+                .then(data => {
+                    categories = data;
+                    loadCategories();
+                });
+        }
+
+        const getAllProducts = async (categoryID) => {
+            const categoryData = {
+                categoryID: categoryID
+            };
+
+            fetch(
+                'http://localhost/vincentangeles.github.io/ADET/A06_BE/products.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(categoryData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    products = data;
+                    loadProducts();
+                });
+        }
+
+        getAllCategories();
+
 
         var total = 0;
 
         function loadCategories() {
             var categoriesContainer = document.getElementById("categories");
 
-            products.forEach((product, index) => {
+            categories.forEach((category) => {
                 categoriesContainer.innerHTML += `
-          <div onclick="loadProducts('`+ index + `')" class="card mx-1 custom-button p-3 text-center">
-            <small>`+ product.category + `</small>
+          <div onclick="getAllProducts('` + category.categoryID + `')" class="card mx-1 custom-button p-3 text-center">
+            <small>`+ category.name + `</small>
           </div>
         `;
             });
         }
 
-        function loadProducts(categoryIndex) {
+
+        function loadProducts(categoryID) {
             var maincontainer = document.getElementById("maincontainer");
             maincontainer.innerHTML = "";
 
-            var category = products[categoryIndex];
-            var useCategoryPrice = category.price !== undefined;
-
-            category.contents.forEach(content => {
-                var priceToUse = useCategoryPrice ? category.price : content.price;
-
-                // Check if the item is available
-                var isAvailable = content.isAvailable;
-                var itemClass = isAvailable ? 'custom-button' : 'custom-button disabled'; // Add 'disabled' class if not available
-                var itemStyle = isAvailable ? '' : 'style="background-color: gray; cursor: not-allowed;"'; // Apply gray background and disable pointer events
-
+            products.forEach(product => {
                 maincontainer.innerHTML += `
-            <div onclick="` + (isAvailable ? `addToReceipt('` + priceToUse + `','` + content.name + `')` : '') + `"
-                 class="card mx-1 my-2 ` + itemClass + ` content p-3 text-center" ` + itemStyle + `>
-              <small>` + content.name + `</small>
-            </div>
-        `;
+              <div onclick="addToReceipt('` + product.price + `','` + product.code + `')" class="card mx-1 my-2 custom-button content p-3 text-center">
+                <small>` + product.name + `</small>
+                 <small>` + product.price + `</small>
+              </div>
+            `;
             });
         }
 
-        function addToReceipt(price, name) {
+        function addToReceipt(price, code) {
             var receiptContainer = document.getElementById("receipt");
             total = parseFloat(total) + parseFloat(price);
 
@@ -404,10 +168,10 @@
 
             receiptContainer.innerHTML += `
         <div class="d-flex flex-row justify-content-between">
-          <div><small>`+ name + `</small></div>
+          <div><small>`+ code + `</small></div>
           <div><small>`+ price + `</small></div>
         </div>
-      `;
+`;
         }
 
         function resetOrder() {
@@ -426,17 +190,13 @@
             }
         }
 
-
         function setDiningOption(option) {
             document.querySelector('.diningOption').textContent = `---------- ${option} ----------`;
         }
 
-
-        loadCategories();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
-        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
