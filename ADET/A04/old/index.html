@@ -53,17 +53,22 @@
                             </div>
                             <div class="mt-3 d-flex flex-wrap gap-2">
                                 <button class="btn btn-danger p-2" onclick="resetOrder()">Reset Order</button>
-                                <button class="btn btn-success p-2" onclick="setDiningOption('Dine In')">Dine
+                                <button class="btn btn-success p-2" onclick="placeOrder()">Place Order</button>
+                                <button class="btn btn-info p-2" onclick="setDiningOption('Dine In')">Dine
                                     In</button>
                                 <button class="btn btn-warning p-2" onclick="setDiningOption('Take Out')">Take
                                     Out</button>
+                                <div id="orderSuccessMsg" class="text-success mt-2"
+                                    style="display:none; font-weight:bold;">
+                                    Order successfully placed!
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col pb-3">
                         <div class="card overflow-scroll p-3 maincontainer" style="background-color: #ffe0b2;">
                             <div class="d-flex flex-start flex-row flex-wrap" id="maincontainer">
                             </div>
@@ -72,8 +77,8 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="card d-flex flex-column p-3"
-                    style="min-height: 89vh; max-height: 89vh; background-color: #ffe0b2;">
+                <div class="card d-flex flex-column p-3 mb-3"
+                    style="min-height: 48vh; max-height: 48vh; background-color: #ffe0b2;">
                     <div class="receiptTitle text-center fw-bold fs-2 mb-2">
                         Rice To Go+
                     </div>
@@ -86,6 +91,10 @@
                         <div><b>TOTAL</b></div>
                         <div><b id="totalValue">0</b></div>
                     </div>
+                </div>
+                <div class="card d-flex flex-column p-3"
+                    style="min-height: 40vh; max-height: 40vh; background-color: #ffe0b2;">
+                    <iframe src="../../A07/index.html" width="100%" height="600" style="border: none;"></iframe>
                 </div>
             </div>
         </div>
@@ -408,6 +417,21 @@
           <div><small>`+ price + `</small></div>
         </div>
       `;
+        }
+
+        function placeOrder() {
+            const successMsg = document.getElementById('orderSuccessMsg');
+
+            if (total > 0) {
+                successMsg.style.display = 'block';
+
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+
+                resetOrder();
+            } else {
+            }
         }
 
         function resetOrder() {
