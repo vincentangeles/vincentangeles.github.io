@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>R2G</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         .custom-button {
             width: 100px;
@@ -78,7 +78,7 @@
             </div>
             <div class="col-12 col-md-3">
                 <div class="card d-flex flex-column p-3 mb-3"
-                    style="min-height: 48vh; max-height: 48vh; background-color: #ffe0b2;">
+                    style="min-height: 45vh; max-height: 45vh; background-color: #ffe0b2;">
                     <div class="receiptTitle text-center fw-bold fs-2 mb-2">
                         Rice To Go+
                     </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="card d-flex flex-column p-3"
-                    style="min-height: 40vh; max-height: 40vh; background-color: #ffe0b2;">
+                    style="min-height: 43vh; max-height: 43vh; background-color: #ffe0b2;">
                     <iframe src="../../A07/index.html" width="100%" height="600" style="border: none;"></iframe>
                 </div>
             </div>
@@ -392,8 +392,8 @@
 
                 // Check if the item is available
                 var isAvailable = content.isAvailable;
-                var itemClass = isAvailable ? 'custom-button' : 'custom-button disabled'; // Add 'disabled' class if not available
-                var itemStyle = isAvailable ? '' : 'style="background-color: gray; cursor: not-allowed;"'; // Apply gray background and disable pointer events
+                var itemClass = isAvailable ? 'custom-button' : 'custom-button disabled';
+                var itemStyle = isAvailable ? '' : 'style="background-color: gray; cursor: not-allowed;"';
 
                 maincontainer.innerHTML += `
             <div onclick="` + (isAvailable ? `addToReceipt('` + priceToUse + `','` + content.name + `')` : '') + `"
@@ -421,7 +421,6 @@
 
         function placeOrder() {
             const successMsg = document.getElementById('orderSuccessMsg');
-
             if (total > 0) {
                 successMsg.style.display = 'block';
 
@@ -437,19 +436,12 @@
         function resetOrder() {
             var receiptContainer = document.getElementById("receipt");
             var totalValueElement = document.getElementById("totalValue");
-            var diningOptionElement = document.querySelector('.diningOption'); // Assuming you have a class or id for the dining option display
-
-            // Clear the receipt and reset the total
+            var diningOptionElement = document.querySelector('.diningOption');
             receiptContainer.innerHTML = "";
             total = 0;
-            totalValueElement.innerHTML = "0";
-
-            // Reset the dining option text
-            if (diningOptionElement) {
-                diningOptionElement.textContent = "---------- Dining Option ----------"; // Reset to default text
-            }
+            totalValueElement.innerHTML = total;
+            diningOptionElement.innerHTML = "";
         }
-
 
         function setDiningOption(option) {
             document.querySelector('.diningOption').textContent = `---------- ${option} ----------`;

@@ -1,152 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Sales Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        body {
-            padding: 2rem;
-            background: #f9f9f9;
-        }
-
-        .card {
-            margin-bottom: 1rem;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Embed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
+<style>
+    .banner {
+        background-color: #007bff;
+        /* nice blue background */
+        color: white;
+        /* white text */
+        padding: 10px 20px;
+        /* some padding */
+        font-weight: bold;
+        /* bold text */
+        font-size: 1.2rem;
+        /* a bit bigger font */
+        text-align: center;
+        /* center the text */
+        border-radius: 5px;
+        /* rounded corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        /* subtle shadow */
+    }
+</style>
 
 <body>
 
-    <h2>Live Sales Dashboard</h2>
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <div class="banner">
+                    Cashier On Duty
+                </div>
+                <div class="card">
+                    <div class="card mt-2 p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="h5">Name: John Doe</div>
+                                <div class="h5">Time: 08:00am - 4:00pm</div>
+                                <div class="h6">Schedule: Mon|Tue|Wed|Thu</div>
+                            </div>
+                            <img src="images/profilpic.jpg" alt="John Doe"
+                                style="width: 100px; height: auto; border-radius: 8px;">
+                        </div>
+                    </div>
 
-    <div id="dashboardContent" style="display: none;">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card text-bg-light">
-                    <div class="card-body">
-                        <h5>Total Items Sold</h5>
-                        <p id="itemsSold" class="fs-3">0</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-bg-light">
-                    <div class="card-body">
-                        <h5>Total Sales (₱)</h5>
-                        <p id="totalSales" class="fs-3">0.00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-bg-light">
-                    <div class="card-body">
-                        <h5>Best Seller</h5>
-                        <p id="bestSeller" class="fs-5">None</p>
+                    <div class="card mt-2 mb-2">
+                        <div class="d-flex flex-column align-items-start p-3">
+                            <div class="h4" id="timeInLabel">
+                                Time in: --
+                            </div>
+                            <div class="h4" id="timeOutLabel">
+                                Time out: --
+                            </div>
+                            <button type="button" class="btn btn-success mb-2" onclick="setTime('in')">Time in</button>
+                            <button type="button" class="btn btn-danger" onclick="setTime('out')">Time out</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Live Sales Chart</h5>
-                <canvas id="salesChart" height="120"></canvas>
-            </div>
-        </div>
-
-        <button onclick="clearAllData()" class="btn btn-danger mt-3">Clear Dashboard Data</button>
-    </div>
-
-    <div id="emptyMessage" class="alert alert-warning" style="display: none;">
-        No order placed yet. Dashboard is empty.
     </div>
 
     <script>
-        // Check if any orders have been placed
-        const orderPlaced = localStorage.getItem('orderPlaced') === 'true';
+        function setTime(type) {
+            const now = new Date();
+            // Format time as hh:mm AM/PM
+            const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
-        if (!orderPlaced) {
-            // Show empty message if no order
-            document.getElementById('emptyMessage').style.display = 'block';
-        } else {
-            // Get stored sales data and product categories
-            const salesData = JSON.parse(localStorage.getItem('salesData') || '{}');
-            const categories = JSON.parse(localStorage.getItem('categories') || '[]');
-
-            // Calculate and update dashboard stats
-            function updateDashboard() {
-                // Sum total items sold
-                const totalItems = Object.values(salesData).reduce((sum, qty) => sum + qty, 0);
-
-                // Build price lookup table from categories
-                const priceLookup = {};
-                categories.forEach(category => {
-                    category.contents.forEach(item => {
-                        if (item.isAvailable) priceLookup[item.name] = item.price;
-                    });
-                });
-
-                // Calculate total sales in ₱
-                let totalSales = 0;
-                for (const item in salesData) {
-                    if (priceLookup[item]) {
-                        totalSales += salesData[item] * priceLookup[item];
-                    }
-                }
-
-                // Find best seller (highest quantity sold)
-                const bestSellerEntry = Object.entries(salesData).sort((a, b) => b[1] - a[1])[0];
-                const bestSeller = bestSellerEntry ? bestSellerEntry[0] : 'None';
-
-                // Update UI text
-                document.getElementById('itemsSold').textContent = totalItems;
-                document.getElementById('totalSales').textContent = totalSales.toFixed(2);
-                document.getElementById('bestSeller').textContent = bestSeller;
+            if (type === 'in') {
+                document.getElementById('timeInLabel').textContent = `Time in: ${formattedTime}`;
+            } else if (type === 'out') {
+                document.getElementById('timeOutLabel').textContent = `Time out: ${formattedTime}`;
             }
-
-            // Draw the sales chart using Chart.js
-            function drawChart() {
-                const ctx = document.getElementById('salesChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(salesData),
-                        datasets: [{
-                            label: 'Items Sold',
-                            data: Object.values(salesData),
-                            backgroundColor: '#4e73df'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: { stepSize: 1 }
-                            }
-                        }
-                    }
-                });
-            }
-
-            updateDashboard();
-            drawChart();
-            document.getElementById('dashboardContent').style.display = 'block';
-        }
-
-        // Clear localStorage data and reload page
-        function clearAllData() {
-            localStorage.removeItem('salesData');
-            localStorage.removeItem('categories');
-            localStorage.removeItem('orderPlaced');
-            location.reload();
         }
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
