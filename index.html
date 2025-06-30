@@ -16,6 +16,16 @@
         font-style: normal;
     }
 
+    #nav {
+        font-family: 'GraphikCompact', sans-serif;
+    }
+
+    #nav .nav-link {
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
     .logo-img {
         max-width: 50px;
         height: auto;
@@ -45,10 +55,31 @@
         font-size: 40px;
         margin-bottom: 5px;
     }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        min-height: 100vh;
+        font-family: sans-serif;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        /* Behind everything */
+    }
 </style>
 
 <body data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md bg-dark-subtle shadow">
+    <canvas id="starCanvas"></canvas>
+    <nav id="nav" class="navbar navbar-expand-md bg-dark-subtle shadow fixed-top z-3">
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
@@ -65,38 +96,41 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#Projects">Projects</a>
+                        <a class="nav-link text-warning" href="#Projects">Projects</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Education</a>
+                        <a class="nav-link text-warning" href="#">Education</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Adventures</a>
+                        <a class="nav-link text-warning" href="#">Adventures</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link text-warning" href="#">About</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container my-5 mb-5 pb-5">
-        <div class="row align-items-center">
+
+    <div class="container my-5 mb-5 pt-5">
+        <div class="row align-items-center text-center text-md-start">
             <!-- Left Column: Text Content -->
-            <div class="col-md-6 col-12">
-                <div class="md-4">
-                    <div class="name">Emanuel Vincent</div>
+            <div class="col-md-6 col-12 order-2 order-md-1">
+                <div class="mt-4 mt-md-0">
+                    <div class="name text-warning">Emanuel Vincent</div>
                     <div class="desc">Bachelor of Science in Information Technology</div>
                     <div class="desc">Student</div>
                 </div>
             </div>
 
             <!-- Right Column: Image -->
-            <div class="col-md-6 col-12 text-center">
+            <div class="col-md-6 col-12 order-1 order-md-2 text-center">
                 <img src="logo1.png" class="img-fluid custom-img mt-5" alt="Profile Image">
             </div>
         </div>
     </div>
+
+    <div class="pb-5"></div>
 
     <div class="section mt-5 pt-5 pb-5" id="Projects">
         <div class="container mt-5 pb-5">
@@ -153,8 +187,7 @@
             </div>
         </div>
 
-        <ul class="short-divider justify-content-center border-bottom pb-3 mb-3"></ul>
-
+        <!-- <ul class="short-divider justify-content-center border-bottom pb-3 mb-3"></ul> -->
 
         <div class="container pt-5 ">
             <div class="row">
@@ -196,6 +229,91 @@
             </div>
         </div>
     </div>
+    <script>
+        const canvas = document.getElementById("starCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = [];
+        const numStars = 200;
+
+        // Initialize stars with movement velocity
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                color: Math.random() > 0.5 ? "white" : "yellow",
+                vx: (Math.random() - 0.5) * 0.1, // horizontal speed
+                vy: (Math.random() - 0.5) * 0.1  // vertical speed
+            });
+        }
+
+        let shootingStar = null;
+
+        function createShootingStar() {
+            shootingStar = {
+                x: Math.random() * canvas.width / 2,
+                y: canvas.height,
+                vx: 12 + Math.random() * 5,
+                vy: -12 - Math.random() * 5,
+                length: 200
+            };
+        }
+
+        function drawStars() {
+            for (let star of stars) {
+                // Update position for floating effect
+                star.x += star.vx;
+                star.y += star.vy;
+
+                // Wrap stars to the other side if they move out of screen
+                if (star.x < 0) star.x = canvas.width;
+                if (star.x > canvas.width) star.x = 0;
+                if (star.y < 0) star.y = canvas.height;
+                if (star.y > canvas.height) star.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = star.color;
+                ctx.fill();
+            }
+        }
+
+        function drawShootingStar() {
+            if (shootingStar) {
+                ctx.strokeStyle = "white";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(shootingStar.x, shootingStar.y);
+                ctx.lineTo(shootingStar.x - shootingStar.length, shootingStar.y + shootingStar.length);
+                ctx.stroke();
+
+                shootingStar.x += shootingStar.vx;
+                shootingStar.y += shootingStar.vy;
+
+                if (shootingStar.x > canvas.width || shootingStar.y < 0) {
+                    shootingStar = null;
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStars();
+            drawShootingStar();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        setInterval(createShootingStar, 3000);
+        animate();
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
