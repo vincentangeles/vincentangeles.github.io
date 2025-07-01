@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'GraphikCompact';
+    src: url('../GraphikFont/GraphikCompact-Black-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#nav {
+    font-family: 'GraphikCompact', sans-serif;
+}
+
+#nav .nav-link {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logo-img {
+    max-width: 50px;
+    height: auto;
+}
+
+.name {
+    font-family: 'GraphikCompact', sans-serif;
+    font-size: 70px !important;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.desc {
+    font-family: 'GraphikCompact', sans-serif;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.custom-img {
+    width: 800px;
+    max-width: 100%;
+    height: auto;
+}
+
+.title {
+    font-family: 'GraphikCompact', sans-serif;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Behind everything */
+}
+
+.timeline {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.timeline-line {
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    z-index: 0;
+    margin-top: 365px;
+}
+
+.timeline-graphik {
+    font-family: 'GraphikCompact', sans-serif;
+    font-size: 40px;
+    line-height: 1.4;
+}
+
+.timeline-graphik p,
+.timeline-graphik small {
+    font-size: 20px;
+    line-height: 1.4;
+}
