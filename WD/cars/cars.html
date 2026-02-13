@@ -5,164 +5,153 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cars</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="car.png">
-</head>
 
-<body data-bs-theme="light" id="body">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="car.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* Default styles for light mode */
         body[data-bs-theme="light"] h1 {
             color: black;
         }
 
-        /* Styles for dark mode */
         body[data-bs-theme="dark"] h1 {
             color: white;
         }
 
-        /* New styles for card images */
         .card-img-top {
             height: 200px;
-            /* Set a fixed height */
             object-fit: cover;
-            /* Maintain aspect ratio and cover the area */
         }
 
         .hover-effect {
             transform: scale(1.05);
-            /* Slightly increase size */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            /* Add shadow */
             transition: transform 0.3s, box-shadow 0.3s;
-            /* Smooth transition */
         }
     </style>
-    </head>
+</head>
 
-    <body data-bs-theme="light" id="body">
+<body data-bs-theme="light" id="body">
 
-        <!-- Porsche Title -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col" style="height: 100px;">
-                    <h1 class="display-6 text-center m-4" style="font-family: 'Orbitron', sans-serif;">
-                        PORSCHE
-                    </h1>
-                    <button class="btn btn-outline-secondary" id="btnColor" onclick="changeColorMode()">Dark
-                            Mode</button>
-                    <button type="button" class="btn btn-outline-secondary"
-                            onclick="window.location.href='../../../vincentangeles.github.io';">Home</button>
-                        <button type="button" class="btn btn-link" id="linkButton">Link</button>
-                </div>
+    <!-- NAVBAR STYLE HEADER -->
+    <div class="container-fluid py-3 border-bottom">
+        <div class="row align-items-center">
+
+            <div class="col-3"></div>
+
+            <div class="col-6 text-center">
+                <h1 class="display-6 m-0" style="font-family: 'Orbitron', sans-serif;">
+                    PORSCHE
+                </h1>
+            </div>
+
+            <div class="col-3 text-end">
+                <button class="btn btn-outline-secondary btn-sm"
+                    id="btnColor"
+                    onclick="changeColorMode()">
+                    Dark Mode
+                </button>
+
+                <button type="button"
+                    class="btn btn-outline-secondary btn-sm"
+                    onclick="window.location.href='../../../vincentangeles.github.io';">
+                    Home
+                </button>
+
+                <button type="button"
+                    class="btn btn-link btn-sm"
+                    id="linkButton">
+                    Link
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="container-fluid px-0">
+        <img src="images_porsche/porsche.jpg"
+            class="img-fluid w-100"
+            alt="Porsche">
+    </div>
+
+    <!-- MODELS SECTION -->
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h1 class="display-6">Porsche Models</h1>
             </div>
         </div>
-          <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <h1 class="display-6">
-                        About Porsche
-                        <button class="btn btn-outline-secondary" id="btnColor" onclick="changeColorMode()">Dark
-                            Mode</button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            onclick="window.location.href='../../../vincentangeles.github.io';">Home</button>
-                        <button type="button" class="btn btn-link" id="linkButton">Link</button>
-                    </h1>
+
+        <div class="row" id="cardContainer"></div>
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var names = ["911", "Taycan", "718", "Macan", "Panamera", "Cayenne"];
+        var pics = ["911.jpg", "Taycan.jpg", "718.jpg", "Macan.jpg", "Panamera.jpg", "Cayenne.jpg"];
+        var description = [
+            "The Porsche 911 is a legendary sports car known for its timeless design and exceptional performance.",
+            "The Porsche Taycan is Porsche’s first fully electric sports car blending electric innovation with performance.",
+            "The Porsche 718 is a mid-engine sports car delivering precise handling and exhilarating acceleration.",
+            "The Porsche Macan is a compact luxury SUV combining sporty performance with practicality.",
+            "The Porsche Panamera is a luxury sports sedan merging comfort and high performance.",
+            "The Porsche Cayenne is a luxury midsize SUV combining sporty driving with versatility."
+        ];
+
+        for (var i = 0; i < names.length; i++) {
+            var myContainer = document.getElementById("cardContainer");
+
+            myContainer.innerHTML += `
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="card my-3" id="c${i}"
+                        onmouseenter="addHoverEffect('c${i}')"
+                        onmouseleave="removeHoverEffect('c${i}')">
+
+                        <img src="images_porsche/${pics[i]}" class="card-img-top">
+
+                        <div class="card-body">
+                            <h5 class="card-title">${names[i]}</h5>
+                            <p class="card-text">${description[i]}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-           <div class="container-fluid px-0">
-            <img src="images_porsche/porsche.jpg" class="img-fluid w-100"alt="Porsche">
-            </div>
+            `;
+        }
 
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <h1 class="display-6">Porsche Models</h1>
-                </div>
-            </div>
-            <div class="row" id="cardContainer">
-            </div>
-        </div>
-      
+        function addHoverEffect(id) {
+            document.getElementById(id).classList.add("hover-effect");
+        }
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-            crossorigin="anonymous"></script>
+        function removeHoverEffect(id) {
+            document.getElementById(id).classList.remove("hover-effect");
+        }
 
-        <script>
-            var names = ["911", "Taycan", "718", "Macan", "Panamera", "Cayenne"];
-            var pics = ["911.jpg", "Taycan.jpg", "718.jpg", "Macan.jpg", "Panamera.jpg", "Cayenne.jpg"];
-            var description = ["The Porsche 911 is a legendary sports car known for its timeless design and exceptional performance. First introduced in 1964, it has maintained its distinctive rear-engine layout while evolving with modern technology and engineering. Powered by a flat-six engine, the 911 offers impressive acceleration and handling, making it a favorite among driving enthusiasts. Its sleek, aerodynamic design and luxurious interior provide a perfect blend of style and comfort. Over the decades, the 911 has become a symbol of Porsche's commitment to performance, innovation, and driving pleasure.",
-                "The Porsche Taycan is Porsche’s first fully electric sports car, blending cutting-edge electric technology with the brand’s signature performance. Launched in 2019, the Taycan features an advanced electric drivetrain that delivers rapid acceleration and a smooth, quiet ride, rivaling traditional gas-powered sports cars. Its sleek, aerodynamic design reflects Porsche’s distinctive style while incorporating modern touches for a futuristic look. The Taycan offers impressive handling and driving dynamics, staying true to Porsche’s reputation for precise engineering. The Taycan stands as a symbol of Porsche's transition to sustainable mobility without compromising its performance heritage.",
-                "The Porsche 718 is a line of sports cars that includes the 718 Boxster and 718 Cayman, reflecting the brand's commitment to performance and driving pleasure. Introduced in 2016, these mid-engine models enhance balance and handling capabilities. Powered by turbocharged four-cylinder engines, the 718 delivers exhilarating acceleration and precise cornering. Its design features a sleek silhouette with sporty lines, while the driver-focused interior boasts high-quality materials and advanced technology. The 718 series continues Porsche's legacy of lightweight, agile sports cars that offer an engaging driving experience.",
-                "The Porsche Macan is a compact luxury SUV that merges sporty performance with practicality. Launched in 2014, it features a distinctive design with bold lines and an aggressive stance. The Macan offers a range of powerful engines, from turbocharged four-cylinders to robust V6 variants, ensuring thrilling acceleration and responsive handling. Its high-quality, driver-focused interior includes premium materials and advanced technology for a comfortable driving experience. With an all-wheel-drive system and versatile cargo space, the Macan is perfect for both urban commuting and adventurous outings.",
-                "The Porsche Panamera is a luxury four-door sports sedan that combines high performance with everyday practicality. Launched in 2009, it features a sleek, coupe-like design and offers a range of powerful engines, including V6 and V8 options, as well as hybrid variants for enhanced efficiency. The interior is luxurious and tech-filled, offering premium materials, spacious seating, and advanced infotainment systems. With agile handling and dynamic driving characteristics, the Panamera merges sports car performance with the comfort of a luxury sedan.",
-                "The Porsche Cayenne is a luxury midsize SUV that seamlessly combines sporty performance with off-road capabilities. First introduced in 2002, the Cayenne features a muscular design that reflects Porsche's sporty heritage. It offers a variety of powerful engine options, including turbocharged V6s and V8s, as well as hybrid variants, ensuring impressive acceleration and handling. Inside, the Cayenne boasts a high-end interior filled with premium materials, advanced technology, and spacious seating, providing a comfortable and upscale driving experience. With its all-wheel-drive system and versatile cargo space, the Cayenne is designed for both urban driving and adventurous excursions, making it a popular choice among luxury SUV enthusiasts."];
+        var colorMode = "light";
 
-            for (var i = 0; i < names.length; i++) {
-                var myContainer = document.getElementById("cardContainer");
-                myContainer.innerHTML += "<div class=\"col-xl-4 col-md-6 col-sm-12 col-12\"><div class=\"card my-3\" id=\"c" + i + "\" onmouseenter=\"addHoverEffect('c" + i + "')\" onmouseleave=\"removeHoverEffect('c" + i + "')\"><img src=\"images_porsche/" + pics[i] + "\" class=\"card-img-top\"><div class=\"card-body\"><h5 class=\"card-title\">" + names[i] + "</h5><p class=\"card-text\">" + description[i] + "</p></div></div></div>";
+        function changeColorMode() {
+            if (colorMode == "light") {
+                document.getElementById("body").setAttribute("data-bs-theme", "dark");
+                document.getElementById("btnColor").innerHTML = "Light Mode";
+                colorMode = "dark";
+            } else {
+                document.getElementById("body").setAttribute("data-bs-theme", "light");
+                document.getElementById("btnColor").innerHTML = "Dark Mode";
+                colorMode = "light";
             }
+        }
 
-            function addShadow(id) {
-                document.getElementById(id).classList.add("shadow");
-            }
+        document.getElementById("linkButton").addEventListener("click", function () {
+            window.location.href = "https://configurator.porsche.com/en-PH/model-start/";
+        });
+    </script>
 
-            function removeShadow(id) {
-                document.getElementById(id).classList.remove("shadow");
-            }
-
-            function addHoverEffect(id) {
-                document.getElementById(id).classList.add("hover-effect");
-            }
-
-            function removeHoverEffect(id) {
-                document.getElementById(id).classList.remove("hover-effect");
-            }
-
-
-            var display = "none";
-            function expandContent() {
-                var footer = document.getElementById("footer");
-                var btnExpand = document.getElementById("btnExpand");
-
-                if (display == "none") {
-                    footer.style.display = "block";
-                    display = "block";
-                    btnExpand.innerHTML = "Close";
-                } else {
-                    footer.style.display = "none";
-                    display = "none";
-                    btnExpand.innerHTML = "About";
-                }
-            }
-
-            var colorMode = "light";
-            function changeColorMode() {
-                if (colorMode == "light") {
-                    document.getElementById("body").setAttribute("data-bs-theme", "dark");
-                    document.getElementById("btnColor").innerHTML = "Light Mode";
-                    colorMode = "dark";
-                } else {
-                    document.getElementById("body").setAttribute("data-bs-theme", "light");
-                    document.getElementById("btnColor").innerHTML = "Dark Mode";
-                    colorMode = "light";
-                }
-            }
-
-            document.getElementById("linkButton").addEventListener("click", function () {
-                window.location.href = "https://configurator.porsche.com/en-PH/model-start/";
-            });
-        </script>
-    </body>
-
+</body>
 </html>
